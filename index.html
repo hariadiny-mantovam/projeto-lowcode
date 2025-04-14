@@ -6,40 +6,72 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" sizes="32x32" href="img/icon.jpg">
     <script defer src="script.js"></script>
-    <title>Fantasy World</title>
+    <title>The Last Light of Thalanor</title>
 </head>
 <body>
 
     <!--Cabeçalho-->
     <header>
-        <a href="index.html" title="home"> <img src="img/logo.png" alt="Grupo Integrado" title="Grupo Integrado"></a>
+        <a href="index.html" title="home"> <img src="img/logo1.png" alt="Grupo Integrado" title="Grupo Integrado" width="10%"></a>
         <nav class="nav">
 
             <ul class="nav-list">
                 <li><a href="index.html" title="Home">Home</a></li>
-                <li><a href="" title="História">História</a></li>
-                <li><a href="#pagem-game" title="Jogo">Jogo</a></li>
-                <li><a href="" title="Contato">Contato</a></li>
+                <li><a href="#sessao-historia" title="História">História</a></li>
+                <li><a href="#sessao-jogo" title="Jogo">Jogo</a></li>
+                <li><a href="#sessao-contato" title="Contato">Contato</a></li>
             </ul>
             
-        </nav>
-
-
-        <!--Banner
-    <div class="section1">
-            <h1>A maldição de Teoden</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia quos.</p>
-            <button class="button-explore"><a href="">Explorar</a></button>
-    </div>
-  -->
-       
+        </nav> 
+        <div class="parallax1">
+        <h1>A luz está se apagando… Você será a última esperança de Thalanor?</h1>
+        </div>
 </header>
 
-<section id="page-game">
-    <iframe src="Meu projeto/index.html" frameborder="0" width="100%" height="700px"></iframe>
+       <!--Section-->
+<section id="sessao-historia">
+    <div class="parallax2">
+        <h1>História</h1>
+        <p>Em um mundo que outrora brilhou com magia élfica, restou apenas uma centelha. Guie um pequeno herói por ruínas encantadas, derrote criaturas sombrias e recupere a última luz de Thalanor.</p>
+        <button class="button-explore"><a href="#page-game">Jogar</a></button>
+</div>
+
+</section>
+
+<section id="sessao-jogo">
+    <iframe src="Meu projeto/index.html" frameborder="0" width="100%" height="800px" onload="document.getElementById('meuJogo').focus()" tabindex="0"></iframe>
 </section>
 
   
+<section id="sessao-contato">
+    <div class="contato-wrapper">
+        <div class="contato-left"></div>
+        <div class="contato-right">
+            <h1 id="contato">Contato</h1>
+            <form>
+                <div class="input-group">
+                    <input type="text" class="field" 
+                    id="nome">
+                    <label for="nome" class="field-label">Nome</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="field" id="email">
+                    <label for="email" class="field-label">E-mail</label>
+                </div>
+                <div class="input-group">
+                    <textarea class="field" id="mensagem"></textarea>
+                    <label for="mensagem" class="field-label">Mensagem</label>
+                </div>
+                <button class="btn-submit" type="submit">Enviar</button>
+            </form>
+        </div>
+        
+    </div>
+</section>
+<footer>
     
+    <p>&copy; Todos os direitos reservados <br> Desenvolvido por Hariadiny Mantovam</p>
+    <img src="img/logo1.png" alt="The Last Light of Thalanor" width="10%">
+</footer>
 </body>
 </html>

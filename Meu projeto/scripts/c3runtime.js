@@ -1096,6 +1096,21 @@ self["C3_Shaders"]["vignette"] = {
 	animated: false,
 	parameters: [["vignetteStart",0,"percent"],["vignetteEnd",0,"percent"]]
 };
+self["C3_Shaders"]["depthstripe"] = {
+	glsl: "varying mediump vec2 vTex;\nuniform lowp sampler2D samplerFront;\nuniform mediump vec2 srcStart;\nuniform mediump vec2 srcEnd;\nuniform lowp sampler2D samplerDepth;\nuniform mediump vec2 destStart;\nuniform mediump vec2 destEnd;\nuniform mediump float zNear;\nuniform mediump float zFar;\nuniform lowp vec3 color1;\nuniform lowp float opacity1;\nuniform lowp vec3 color2;\nuniform lowp float opacity2;\nuniform mediump float stripeDepth;\nuniform mediump float stripeOffset;\nvoid main(void)\n{\nlowp vec4 front = texture2D(samplerFront, vTex);\nmediump vec2 tex = (vTex - srcStart) / (srcEnd - srcStart);\nmediump float depthSample = texture2D(samplerDepth, mix(destStart, destEnd, tex)).r;\nmediump float zLinear = zNear * zFar / (zFar + depthSample * (zNear - zFar));\nlowp float which = mod(floor((zLinear + stripeOffset) / stripeDepth), 2.0);\nif (which == 0.0)\n{\ngl_FragColor = mix(front, vec4(color1 * front.a, front.a), opacity1);\n}\nelse\n{\ngl_FragColor = mix(front, vec4(color2 * front.a, front.a), opacity2);\n}\n}",
+	glslWebGL2: "",
+	wgsl: "%%SAMPLERFRONT_BINDING%% var samplerFront : sampler;\n%%TEXTUREFRONT_BINDING%% var textureFront : texture_2d<f32>;\n%%SAMPLERDEPTH_BINDING%% var samplerDepth : sampler;\n%%TEXTUREDEPTH_BINDING%% var textureDepth : texture_depth_2d;\nstruct ShaderParams {\ncolor1 : vec3<f32>,\nopacity1 : f32,\ncolor2 : vec3<f32>,\nopacity2 : f32,\nstripeDepth : f32,\nstripeOffset : f32\n};\n%%SHADERPARAMS_BINDING%% var<uniform> shaderParams : ShaderParams;\n%%C3PARAMS_STRUCT%%\n%%FRAGMENTINPUT_STRUCT%%\n%%FRAGMENTOUTPUT_STRUCT%%\n@fragment\nfn main(input : FragmentInput) -> FragmentOutput\n{\nvar front : vec4<f32> = textureSample(textureFront, samplerFront, input.fragUV);\nvar depthSample : f32 = textureSample(textureDepth, samplerDepth, c3_getDepthUV(input.fragPos.xy, textureDepth));\nvar zLinear : f32 = c3_linearizeDepth(depthSample);\nvar which : f32 = floor((zLinear + shaderParams.stripeOffset) / shaderParams.stripeDepth) % 2.0;\nvar stripeColor : vec3<f32> = select(shaderParams.color2, shaderParams.color1, which == 0.0);\nvar stripeOpacity : f32 = select(shaderParams.opacity2, shaderParams.opacity1, which == 0.0);\nvar output : FragmentOutput;\noutput.color = mix(front, vec4<f32>(stripeColor * front.a, front.a), stripeOpacity);\nreturn output;\n}",
+	blendsBackground: false,
+	usesDepth: true,
+	extendBoxHorizontal: 0,
+	extendBoxVertical: 0,
+	crossSampling: false,
+	mustPreDraw: false,
+	preservesOpaqueness: false,
+	supports3dDirectRendering: false,
+	animated: false,
+	parameters: [["color1",0,"color"],["opacity1",0,"percent"],["color2",0,"color"],["opacity2",0,"percent"],["stripeDepth",0,"float"],["stripeOffset",0,"float"]]
+};
 
 }
 
