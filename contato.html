@@ -7,10 +7,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="img/icon.jpg">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script href="script"></script>
     <title>The Last Light of Thalanor</title>
 </head>
 <body>
+
     <!--Cabeçalho-->
     <header>
         <a href="index.html" title="home"> <img src="img/logo1.png" alt="Logo" title="Logo" width="10%"></a>
@@ -30,20 +31,30 @@
         </nav> 
         
 </header>
-
        <!--Section-->
-
-<main class="banner-home">
-        <h1>A luz está se apagando… Você será a última esperança de Thalanor?</h1>
-</main>
-
-<footer>
-    
-  <div class="footer-bottom">
-    <p>&copy; 2025 Hariadiny Mantovam. Todos os direitos reservados.</p>
-  </div>
-</footer>
-
-<script src="script.js"></script>
+<section id="sessao-contato">
+    <div class="contato-wrapper">
+        <div class="contato-left"></div>
+        <div class="contato-right">
+            <h1 id="contato">Contato</h1>
+            <form>
+                <div class="input-group">
+                    <input type="text" class="field" 
+                    id="nome">
+                    <label for="nome" class="field-label">Nome</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="field" id="email">
+                    <label for="email" class="field-label">E-mail</label>
+                </div>
+                <div class="input-group">
+                    <textarea class="field" id="mensagem"></textarea>
+                    <label for="mensagem" class="field-label">Mensagem</label>
+                </div>
+                <button class="btn-submit" type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+</section>
 </body>
 </html>
